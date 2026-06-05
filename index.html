@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tai Bradley — Computer Science</title>
+  <meta name="description" content="Tai Bradley — B.S. Computer Science, The Ohio State University. Cybersecurity, embedded systems, and software." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav" id="top">
+    <a href="#top" class="nav__brand">&gt;&nbsp;Tai&nbsp;Bradley</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Hero / About ===== -->
+    <section class="hero" id="about">
+      <p class="hero__prompt">// hello world</p>
+      <h1 class="hero__name">Tai Bradley</h1>
+      <p class="hero__tagline">
+        B.S. Computer Science <span class="dot">·</span> The Ohio State University<br />
+        Information &amp; Computer Assurance (ICA) <span class="dot">·</span> Cybersecurity
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="mailto:Bradley.809@osu.edu">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/tai-bradley/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Tbrad56" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="hero__phone">(470) 265-3853</p>
+    </section>
+
+    <!-- ===== Education ===== -->
+    <section class="section" id="education">
+      <p class="section__label">// education</p>
+      <h2 class="section__title">Education</h2>
+      <div class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">The Ohio State University</h3>
+            <p class="card__sub">B.S. in Computer Science — Senior <span class="dot">·</span> Columbus, OH</p>
+          </div>
+          <span class="card__date">Aug 2023 – May 2027 <em>(Expected)</em></span>
+        </div>
+        <p class="kv"><span class="kv__key">Major</span> Information and Computer Assurance (ICA)</p>
+        <p class="kv"><span class="kv__key">Organizations</span> National Society of Black Engineers, ColorStack, The Zeta of Kappa Alpha Psi Fraternity Inc., National Pan-Hellenic Council (NPHC), Viceroy Scholar</p>
+        <p class="kv"><span class="kv__key">Coursework</span> Software II: Software Development &amp; Design, Systems I: Low-Level Programming, Systems II: Operating Systems, Data Structures &amp; Algorithms, Computer Networking, Information Security, Programming Principles</p>
+      </div>
+    </section>
+
+    <!-- ===== Technical Skills ===== -->
+    <section class="section" id="skills">
+      <p class="section__label">// technical skills</p>
+      <h2 class="section__title">Technical Skills</h2>
+      <div class="card">
+        <p class="chips__label">Programming Languages</p>
+        <div class="chips">
+          <span class="chip">Java</span><span class="chip">Python</span><span class="chip">C</span>
+          <span class="chip">C++</span><span class="chip">SQL</span><span class="chip">HTML</span><span class="chip">CSS</span>
+        </div>
+        <p class="chips__label">Other Skills</p>
+        <div class="chips">
+          <span class="chip">Security Controls</span><span class="chip">Intrusion Detection &amp; Prevention</span>
+          <span class="chip">Threat Detection</span><span class="chip">Threat Management</span>
+          <span class="chip">Incident Response</span><span class="chip">OOP</span>
+          <span class="chip">NIST Cybersecurity Framework</span><span class="chip">Blockchain Development</span>
+          <span class="chip">PLC Programming</span><span class="chip">Linux OS</span>
+          <span class="chip">Onshape</span><span class="chip">Microsoft Office Suite</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section class="section" id="projects">
+      <p class="section__label">// projects</p>
+      <h2 class="section__title">Projects</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="card__head">
+            <div>
+              <h3 class="card__title">ICS/SCADA Cyber-Physical Research</h3>
+              <p class="card__sub">Undergraduate Research</p>
+            </div>
+            <span class="card__date">Mar 2026 – Current</span>
+          </div>
+          <ul class="bullets">
+            <li>Collaborated with a partner developing a blockchain-secured ICS/SCADA monitoring system, targeting real-world industrial cybersecurity challenges in Water Treatment Plant environments.</li>
+            <li>Modeled real-world threat vectors — Stuxnet-style actuator sabotage, stealth sensor drift, replay attacks, APT multi-vector intrusions — alongside a physics-based IDS capable of detecting attacks invisible to traditional network monitoring.</li>
+            <li>Designed and integrated a custom blockchain ledger in C using OpenSSL SHA-256 hashing and Proof-of-Work consensus for immutable, tamper-proof logging of ICS sensor data and security events.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card__head">
+            <div>
+              <h3 class="card__title">Sentinel IR</h3>
+              <p class="card__sub">Electronics CSE</p>
+            </div>
+            <span class="card__date">Nov 2025 – Dec 2025</span>
+          </div>
+          <ul class="bullets">
+            <li>Designed and implemented an ESP-based intruder detection system using an IR obstacle sensor, pushbutton input, LED indicator, and buzzer, controlled through a state-machine architecture.</li>
+            <li>Validated sensor readings and actuator behavior using isolated test cases and serial debugging before fully running the system.</li>
+            <li>Collaborated with a partner to plan, test, debug, and document the system from initial design through final implementation.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card__head">
+            <div>
+              <h3 class="card__title">Email Automation Tool</h3>
+              <p class="card__sub">Personal Project</p>
+            </div>
+            <span class="card__date">Sep 2025 – Nov 2025</span>
+          </div>
+          <ul class="bullets">
+            <li>Developed a Python script to automate sending emails with multiple attachments using Gmail SMTP.</li>
+            <li>Implemented optional encryption of messages and attachments with <code>cryptography.Fernet</code> for secure data transfer.</li>
+            <li>Managed sensitive credentials securely using environment variables to avoid hardcoding passwords.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== Experience ===== -->
+      
+    <section class="section" id="experience">
+      <p class="section__label">// experience</p>
+      <h2 class="section__title">Experience</h2>
+
+      <article class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">Cybersecurity Intern</h3>
+            <p class="card__sub">OTC Industrial Technologies</p>
+          </div>
+          <span class="card__date">May 2026 – Current</span>
+        </div>
+        <ul class="bullets">
+          <li>Conducting research under the supervision of Vimal Buck in cybersecurity, spanning embedded systems security and log integrity in IoT environments.</li>
+          <li>Developing hands-on skills in security research methodologies alongside coursework in computer science.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">Undergraduate Research Assistant</h3>
+            <p class="card__sub">The Ohio State University</p>
+          </div>
+          <span class="card__date">Feb 2026 – Current</span>
+        </div>
+        <ul class="bullets">
+          <li>Conducting research under the supervision of Vimal Buck in cybersecurity, spanning embedded systems security and log integrity in IoT environments.</li>
+          <li>Developing hands-on skills in security research methodologies alongside coursework in computer science.</li>
+        </ul>
+      </article>
+
+
+      
+      <article class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">Server</h3>
+            <p class="card__sub">J. Alexander's Restaurant</p>
+          </div>
+          <span class="card__date">Oct 2025 – Apr 2026</span>
+        </div>
+        <ul class="bullets">
+          <li>Provide attentive customer service in a fast-paced environment, coordinating with team members to ensure a positive dining experience.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ===== Leadership ===== -->
+    <section class="section" id="leadership">
+      <p class="section__label">// leadership</p>
+      <h2 class="section__title">Leadership</h2>
+
+      <article class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">MTA Chairman / Social Media Chair</h3>
+            <p class="card__sub">Kappa Alpha Psi Fraternity Inc.</p>
+          </div>
+          <span class="card__date">Aug 2025 – Current</span>
+        </div>
+        <ul class="bullets">
+          <li>Serve as Chairperson for the fraternity, overseeing membership intake for the chapter to ensure a smooth and organized onboarding process.</li>
+          <li>Managed and created content across social media to promote events, increase engagement, and strengthen community presence.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">Finance Chair</h3>
+            <p class="card__sub">NPHC Executive Board</p>
+          </div>
+          <span class="card__date">Dec 2025 – Current</span>
+        </div>
+        <ul class="bullets">
+          <li>Manage chapter finances, including budgeting, expense tracking, and processing funds for operations and events.</li>
+          <li>Collaborate with other E-board members to allocate funds responsibly.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section section--contact" id="contact">
+      <p class="section__label">// contact</p>
+      <h2 class="section__title">Get in touch</h2>
+      <p class="contact__line">Open to internships and research in cybersecurity &amp; software.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="mailto:Bradley.809@osu.edu">Bradley.809@osu.edu</a>
+        <a class="btn" href="https://www.linkedin.com/in/tai-bradley/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Tbrad56" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="hero__phone">(470) 265-3853</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&gt; built by Tai Bradley <span class="dot">·</span> 2026</p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open);
+    });
+    // Close menu after clicking a link (mobile)
+    links.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => {
+        links.classList.remove('is-open');
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      })
+    );
+  </script>
+</body>
+</html>
