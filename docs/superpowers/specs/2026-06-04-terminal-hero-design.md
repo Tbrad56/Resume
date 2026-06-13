@@ -27,7 +27,7 @@ tai@osu:~$ whoami
 Tai Bradley
 
 tai@osu:~$ cat role.txt
-B.S. Computer Science · The Ohio State University · ICA
+B.S. Computer Science · The Ohio State University · Information and Computer Assurance (ICA)
 
 tai@osu:~$ ls focus/
 cybersecurity  embedded-systems  software
