@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Gate motion: only animate when JS runs AND reduced motion is not requested.
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js-motion');
+    }
+  </script>
 </head>
 <body>
 
@@ -30,22 +36,32 @@
   <main>
     <!-- ===== Hero / About ===== -->
     <section class="hero" id="about">
-      <p class="hero__prompt">// hello world</p>
-      <h1 class="hero__name">Tai Bradley</h1>
-      <p class="hero__tagline">
-        B.S. Computer Science <span class="dot">·</span> The Ohio State University<br />
-        Information &amp; Computer Assurance (ICA) <span class="dot">·</span> Cybersecurity
-      </p>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="mailto:Bradley.809@osu.edu">Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/tai-bradley/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/Tbrad56" target="_blank" rel="noopener">GitHub</a>
+      <div class="term" id="term">
+        <div class="term__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+
+        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>whoami</span></p>
+        <h1 class="term__out term__name">Tai Bradley</h1>
+
+        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>cat role.txt</span></p>
+        <p class="term__out">B.S. Computer Science <span class="dot">·</span> The Ohio State University <span class="dot">·</span> Information &amp; Computer Assurance (ICA)</p>
+
+        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>ls focus/</span></p>
+        <p class="term__out term__focus">cybersecurity&nbsp;&nbsp;embedded-systems&nbsp;&nbsp;software</p>
+
+        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>./contact --options</span></p>
+        <div class="btn-row term__btns">
+          <a class="btn btn--primary" href="mailto:Bradley.809@osu.edu">Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/tai-bradley/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/Tbrad56" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <p class="term__line" id="termFinal" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cursor" id="cursor"></span></p>
       </div>
       <p class="hero__phone">(470) 265-3853</p>
     </section>
 
     <!-- ===== Education ===== -->
-    <section class="section" id="education">
+    <section class="section reveal" id="education">
       <p class="section__label">// education</p>
       <h2 class="section__title">Education</h2>
       <div class="card">
@@ -64,7 +80,7 @@
     </section>
 
     <!-- ===== Technical Skills ===== -->
-    <section class="section" id="skills">
+    <section class="section reveal" id="skills">
       <p class="section__label">// technical skills</p>
       <h2 class="section__title">Technical Skills</h2>
       <div class="card">
@@ -86,12 +102,12 @@
     </section>
 
     <!-- ===== Projects ===== -->
-    <section class="section" id="projects">
+    <section class="section reveal" id="projects">
       <p class="section__label">// projects</p>
       <h2 class="section__title">Projects</h2>
       <div class="grid">
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card__head">
             <div>
               <h3 class="card__title">ICS/SCADA Cyber-Physical Research</h3>
@@ -106,7 +122,7 @@
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card__head">
             <div>
               <h3 class="card__title">Sentinel IR</h3>
@@ -121,7 +137,7 @@
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card__head">
             <div>
               <h3 class="card__title">Email Automation Tool</h3>
@@ -141,11 +157,11 @@
 
     <!-- ===== Experience ===== -->
       
-    <section class="section" id="experience">
+    <section class="section reveal" id="experience">
       <p class="section__label">// experience</p>
       <h2 class="section__title">Experience</h2>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="card__head">
           <div>
             <h3 class="card__title">Cybersecurity Intern</h3>
@@ -159,7 +175,7 @@
         </ul>
       </article>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="card__head">
           <div>
             <h3 class="card__title">Undergraduate Research Assistant</h3>
@@ -175,7 +191,7 @@
 
 
       
-      <article class="card">
+      <article class="card reveal">
         <div class="card__head">
           <div>
             <h3 class="card__title">Server</h3>
@@ -190,11 +206,11 @@
     </section>
 
     <!-- ===== Leadership ===== -->
-    <section class="section" id="leadership">
+    <section class="section reveal" id="leadership">
       <p class="section__label">// leadership</p>
       <h2 class="section__title">Leadership</h2>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="card__head">
           <div>
             <h3 class="card__title">MTA Chairman / Social Media Chair</h3>
@@ -208,7 +224,7 @@
         </ul>
       </article>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="card__head">
           <div>
             <h3 class="card__title">Finance Chair</h3>
@@ -224,7 +240,7 @@
     </section>
 
     <!-- ===== Contact ===== -->
-    <section class="section section--contact" id="contact">
+    <section class="section section--contact reveal" id="contact">
       <p class="section__label">// contact</p>
       <h2 class="section__title">Get in touch</h2>
       <p class="contact__line">Open to internships and research in cybersecurity &amp; software.</p>
@@ -241,23 +257,6 @@
     <p>&gt; built by Tai Bradley <span class="dot">·</span> 2026</p>
   </footer>
 
-  <script>
-    // Mobile nav toggle
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => {
-      const open = links.classList.toggle('is-open');
-      toggle.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', open);
-    });
-    // Close menu after clicking a link (mobile)
-    links.querySelectorAll('a').forEach(a =>
-      a.addEventListener('click', () => {
-        links.classList.remove('is-open');
-        toggle.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      })
-    );
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
