@@ -9,12 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script>
-    // Gate motion: only animate when JS runs AND reduced motion is not requested.
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.documentElement.classList.add('js-motion');
-    }
-  </script>
 </head>
 <body>
 
@@ -37,32 +31,35 @@
     <!-- ===== Hero / About ===== -->
     <section class="hero" id="about">
       <div class="term" id="term">
-        <div class="term__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="term__bar"><span></span><span></span><span></span></div>
 
-        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>whoami</span></p>
-        <h1 class="term__out term__name">Tai Bradley</h1>
+        <p class="term__line"><span class="term__prompt">tai@osu:~$</span> <span class="term__cmd" data-type>scan --target tai_bradley</span></p>
+        <p class="term__out">[+] recon complete — subject identified</p>
 
-        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>cat role.txt</span></p>
-        <p class="term__out">B.S. Computer Science <span class="dot">·</span> The Ohio State University <span class="dot">·</span> Information &amp; Computer Assurance (ICA)</p>
+        <p class="term__line"><span class="term__prompt">tai@osu:~$</span> <span class="term__cmd" data-type>decrypt dossier_bradley.enc</span></p>
+        <p class="term__out term__grant">[ACCESS GRANTED — CLEARANCE: PUBLIC]</p>
 
-        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>ls focus/</span></p>
-        <p class="term__out term__focus">cybersecurity&nbsp;&nbsp;embedded-systems&nbsp;&nbsp;software</p>
-
-        <p class="term__line" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cmd" data-type>./contact --options</span></p>
-        <div class="btn-row term__btns">
-          <a class="btn btn--primary" href="mailto:Bradley.809@osu.edu">Email</a>
-          <a class="btn" href="https://www.linkedin.com/in/tai-bradley/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/Tbrad56" target="_blank" rel="noopener">GitHub</a>
+        <div class="dossier term__out">
+          <span class="dossier__stamp" aria-hidden="true">DECLASSIFIED</span>
+          <p class="dossier__label">// PERSONNEL FILE — OSU 2027</p>
+          <h1 class="dossier__name">Tai Bradley</h1>
+          <p class="dossier__row">FOCUS: cybersecurity <span class="dot">·</span> embedded systems <span class="dot">·</span> software</p>
+          <p class="dossier__row">STATUS: <span class="dossier__active">● ACTIVE</span> — B.S. CS, Information &amp; Computer Assurance</p>
+          <div class="btn-row dossier__btns">
+            <a class="btn btn--primary" href="mailto:Bradley.809@osu.edu">Email</a>
+            <a class="btn" href="https://www.linkedin.com/in/tai-bradley/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/Tbrad56" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </div>
 
-        <p class="term__line" id="termFinal" aria-hidden="true"><span class="term__prompt">tai@osu:~$</span><span class="term__cursor" id="cursor"></span></p>
+        <p class="term__line" id="termFinal"><span class="term__prompt">tai@osu:~$</span> <span class="term__cursor" id="cursor"></span></p>
       </div>
       <p class="hero__phone">(470) 265-3853</p>
     </section>
 
     <!-- ===== Education ===== -->
     <section class="section reveal" id="education">
-      <p class="section__label">// education</p>
+      <p class="section__label">// FILE 01 — EDUCATION RECORDS</p>
       <h2 class="section__title">Education</h2>
       <div class="card">
         <div class="card__head">
@@ -81,7 +78,7 @@
 
     <!-- ===== Technical Skills ===== -->
     <section class="section reveal" id="skills">
-      <p class="section__label">// technical skills</p>
+      <p class="section__label">// FILE 02 — CAPABILITIES</p>
       <h2 class="section__title">Technical Skills</h2>
       <div class="card">
         <p class="chips__label">Programming Languages</p>
@@ -103,7 +100,7 @@
 
     <!-- ===== Projects ===== -->
     <section class="section reveal" id="projects">
-      <p class="section__label">// projects</p>
+      <p class="section__label">// FILE 03 — OPERATIONS</p>
       <h2 class="section__title">Projects</h2>
       <div class="grid">
 
@@ -113,12 +110,12 @@
               <h3 class="card__title">ICS/SCADA Cyber-Physical Research</h3>
               <p class="card__sub">Undergraduate Research</p>
             </div>
-            <span class="card__date">Mar 2026 – Current</span>
+            <span class="card__date">Mar 2026 — ACTIVE</span>
           </div>
           <ul class="bullets">
             <li>Collaborated with a partner developing a blockchain-secured ICS/SCADA monitoring system, targeting real-world industrial cybersecurity challenges in Water Treatment Plant environments.</li>
-            <li>Modeled real-world threat vectors — Stuxnet-style actuator sabotage, stealth sensor drift, replay attacks, APT multi-vector intrusions — alongside a physics-based IDS capable of detecting attacks invisible to traditional network monitoring.</li>
-            <li>Designed and integrated a custom blockchain ledger in C using OpenSSL SHA-256 hashing and Proof-of-Work consensus for immutable, tamper-proof logging of ICS sensor data and security events.</li>
+            <li>Modeled real-world threat vectors — <span class="redact" tabindex="0">Stuxnet-style</span> actuator sabotage, stealth sensor drift, replay attacks, APT multi-vector intrusions — alongside a physics-based IDS capable of detecting attacks invisible to traditional network monitoring.</li>
+            <li>Designed and integrated a custom blockchain ledger in C using <span class="redact" tabindex="0">OpenSSL SHA-256 hashing</span> and Proof-of-Work consensus for immutable, tamper-proof logging of ICS sensor data and security events.</li>
           </ul>
         </article>
 
@@ -131,7 +128,7 @@
             <span class="card__date">Nov 2025 – Dec 2025</span>
           </div>
           <ul class="bullets">
-            <li>Designed and implemented an ESP-based intruder detection system using an IR obstacle sensor, pushbutton input, LED indicator, and buzzer, controlled through a state-machine architecture.</li>
+            <li>Designed and implemented an ESP-based intruder detection system using an IR obstacle sensor, pushbutton input, LED indicator, and buzzer, controlled through a <span class="redact" tabindex="0">state-machine architecture</span>.</li>
             <li>Validated sensor readings and actuator behavior using isolated test cases and serial debugging before fully running the system.</li>
             <li>Collaborated with a partner to plan, test, debug, and document the system from initial design through final implementation.</li>
           </ul>
@@ -146,8 +143,8 @@
             <span class="card__date">Sep 2025 – Nov 2025</span>
           </div>
           <ul class="bullets">
-            <li>Developed a Python script to automate sending emails with multiple attachments using Gmail SMTP.</li>
-            <li>Implemented optional encryption of messages and attachments with <code>cryptography.Fernet</code> for secure data transfer.</li>
+            <li>Developed a Python script to automate sending emails with multiple attachments using <span class="redact" tabindex="0">Gmail SMTP</span>.</li>
+            <li>Implemented optional encryption of messages and attachments with <span class="redact" tabindex="0"><code>cryptography.Fernet</code></span> for secure data transfer.</li>
             <li>Managed sensitive credentials securely using environment variables to avoid hardcoding passwords.</li>
           </ul>
         </article>
@@ -158,7 +155,7 @@
     <!-- ===== Experience ===== -->
       
     <section class="section reveal" id="experience">
-      <p class="section__label">// experience</p>
+      <p class="section__label">// FILE 04 — FIELD ASSIGNMENTS</p>
       <h2 class="section__title">Experience</h2>
 
       <article class="card reveal">
@@ -167,7 +164,7 @@
             <h3 class="card__title">Cybersecurity Intern</h3>
             <p class="card__sub">OTC Industrial Technologies</p>
           </div>
-          <span class="card__date">May 2026 – Current</span>
+          <span class="card__date">May 2026 — ACTIVE</span>
         </div>
         <ul class="bullets">
           <li>Conducting research under the supervision of Vimal Buck in cybersecurity, spanning embedded systems security and log integrity in IoT environments.</li>
@@ -181,7 +178,7 @@
             <h3 class="card__title">Undergraduate Research Assistant</h3>
             <p class="card__sub">The Ohio State University</p>
           </div>
-          <span class="card__date">Feb 2026 – Current</span>
+          <span class="card__date">Feb 2026 — ACTIVE</span>
         </div>
         <ul class="bullets">
           <li>Conducting research under the supervision of Vimal Buck in cybersecurity, spanning embedded systems security and log integrity in IoT environments.</li>
@@ -207,7 +204,7 @@
 
     <!-- ===== Leadership ===== -->
     <section class="section reveal" id="leadership">
-      <p class="section__label">// leadership</p>
+      <p class="section__label">// FILE 05 — LEADERSHIP</p>
       <h2 class="section__title">Leadership</h2>
 
       <article class="card reveal">
@@ -216,7 +213,7 @@
             <h3 class="card__title">MTA Chairman / Social Media Chair</h3>
             <p class="card__sub">Kappa Alpha Psi Fraternity Inc.</p>
           </div>
-          <span class="card__date">Aug 2025 – Current</span>
+          <span class="card__date">Aug 2025 — ACTIVE</span>
         </div>
         <ul class="bullets">
           <li>Serve as Chairperson for the fraternity, overseeing membership intake for the chapter to ensure a smooth and organized onboarding process.</li>
@@ -230,7 +227,7 @@
             <h3 class="card__title">Finance Chair</h3>
             <p class="card__sub">NPHC Executive Board</p>
           </div>
-          <span class="card__date">Dec 2025 – Current</span>
+          <span class="card__date">Dec 2025 — ACTIVE</span>
         </div>
         <ul class="bullets">
           <li>Manage chapter finances, including budgeting, expense tracking, and processing funds for operations and events.</li>
@@ -241,20 +238,32 @@
 
     <!-- ===== Contact ===== -->
     <section class="section section--contact reveal" id="contact">
-      <p class="section__label">// contact</p>
+      <p class="section__label">// FILE 06 — SECURE CHANNEL</p>
       <h2 class="section__title">Get in touch</h2>
-      <p class="contact__line">Open to internships and research in cybersecurity &amp; software.</p>
+      <p class="contact__line">Open to internships and research in cybersecurity &amp; software. Transmissions encrypted in transit.</p>
+      <form class="contact-form" id="contactForm" novalidate>
+        <label>NAME
+          <input name="name" required maxlength="100" autocomplete="name" />
+        </label>
+        <label>RETURN CHANNEL (EMAIL)
+          <input type="email" name="email" required maxlength="200" autocomplete="email" />
+        </label>
+        <label>MESSAGE
+          <textarea name="message" required maxlength="5000" rows="6"></textarea>
+        </label>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button class="btn btn--primary" type="submit">TRANSMIT</button>
+        <p class="contact-form__status" id="formStatus" role="status"></p>
+      </form>
       <div class="btn-row">
-        <a class="btn btn--primary" href="mailto:Bradley.809@osu.edu">Bradley.809@osu.edu</a>
-        <a class="btn" href="https://www.linkedin.com/in/tai-bradley/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/Tbrad56" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="mailto:Bradley.809@osu.edu">Direct channel: Bradley.809@osu.edu</a>
       </div>
       <p class="hero__phone">(470) 265-3853</p>
     </section>
   </main>
 
   <footer class="footer">
-    <p>&gt; built by Tai Bradley <span class="dot">·</span> 2026</p>
+    <p>&gt; built &amp; hardened by Tai Bradley <span class="dot">·</span> 2026 <span class="dot">·</span> <span class="footer__dare">audit me: curl -I this site</span></p>
   </footer>
 
   <script src="script.js"></script>
