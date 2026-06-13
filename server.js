@@ -4,6 +4,8 @@ const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const slowDown = require('express-slow-down');
+const nodemailer = require('nodemailer');
+const createContactRouter = require('./routes/contact');
 
 const app = express();
 app.set('trust proxy', 1); // Render runs behind a proxy
@@ -58,6 +60,32 @@ app.use('/api', (req, res, next) => {
 });
 
 app.use(express.json({ limit: '10kb' }));
+
+// Real Gmail transport when creds exist; logging stub otherwise (dev/test)
+function buildSendMail() {
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    return async (msg) => console.log('[mail-stub]', msg.subject);
+  }
+  const transport = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+  });
+  return (msg) => transport.sendMail(msg);
+}
+
+const contactLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: Number(process.env.RATE_CONTACT_MAX || 5),
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    logBlock(req, 'contact-rate');
+    res.status(429).json({ error: 'RATE LIMIT — intrusion attempt logged' });
+  },
+});
+
+app.use('/api/contact', contactLimiter, createContactRouter(buildSendMail()));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 404 — anything not matched above

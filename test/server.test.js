@@ -49,3 +49,16 @@ test('API rejects bot-like user agents', async () => {
   });
   assert.equal(res.status, 403);
 });
+
+test('contact endpoint rate limits after RATE_CONTACT_MAX requests', async () => {
+  let lastStatus = 0;
+  for (let i = 0; i < 4; i++) { // limit is 3 in tests
+    const res = await fetch(`${base}/api/contact`, {
+      method: 'POST',
+      headers: { ...UA, 'content-type': 'application/json' },
+      body: JSON.stringify({ name: 'x', email: 'bad', message: 'x', ts: Date.now() - 5000 }),
+    });
+    lastStatus = res.status;
+  }
+  assert.equal(lastStatus, 429);
+});
