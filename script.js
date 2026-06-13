@@ -1,18 +1,23 @@
 /* ============================================================
-   Tai Bradley — resume site
-   - Mobile nav toggle (always on)
-   - Terminal hero typing animation (motion only)
-   - Scroll-reveal for sections/cards (motion only)
-
-   Motion is gated by the `js-motion` class on <html>, which the
-   inline head script adds ONLY when the visitor has not requested
-   reduced motion. With JS off or reduced motion, every piece of
-   real content is already visible — this file just animates it in.
+   Tai Bradley — dossier resume site
+   - Motion gate (js-motion class, reduced-motion aware)
+   - Mobile nav toggle
+   - Terminal recon/declassify typing animation (motion only)
+   - Scroll reveal (motion only)
+   - Redaction tap-to-declassify
+   - Secure-channel contact form
    ============================================================ */
 (function () {
   'use strict';
 
-  /* ---------- Mobile nav (unconditional) ---------- */
+  var PAGE_LOADED_AT = Date.now();
+
+  /* ---------- Motion gate ---------- */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-motion');
+  }
+
+  /* ---------- Mobile nav ---------- */
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   if (toggle && links) {
@@ -30,22 +35,68 @@
     });
   }
 
-  /* If motion is disabled (no JS-motion class), stop here.
-     Content is already in its final, visible state. */
+  /* ---------- Redactions: tap/keyboard toggle (all visitors) ---------- */
+  document.querySelectorAll('.redact').forEach(function (el) {
+    var open = function () { el.classList.toggle('is-open'); };
+    el.addEventListener('click', open);
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+
+  /* ---------- Secure-channel form (all visitors) ---------- */
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+  if (form && status) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+        website: form.website.value, // honeypot — humans leave empty
+        ts: PAGE_LOADED_AT,
+      };
+      status.className = 'contact-form__status';
+      status.textContent = 'TRANSMITTING…';
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, j: j }; }); })
+        .then(function (r) {
+          if (r.ok) {
+            status.className = 'contact-form__status ok';
+            status.textContent = r.j.message || 'TRANSMISSION RECEIVED — channel secured';
+            form.reset();
+          } else {
+            status.className = 'contact-form__status err';
+            status.textContent = r.j.error || 'TRANSMISSION FAILED — use direct channel';
+          }
+        })
+        .catch(function () {
+          status.className = 'contact-form__status err';
+          status.textContent = 'TRANSMISSION FAILED — use direct channel below';
+        });
+    });
+  }
+
+  /* Motion-only enhancements below. Without js-motion, content is
+     already fully visible — nothing else to do. */
   if (!document.documentElement.classList.contains('js-motion')) return;
 
-  /* ---------- Terminal hero typing ---------- */
+  /* ---------- Terminal typing ---------- */
   var term = document.getElementById('term');
   var cursor = document.getElementById('cursor');
   var finalLine = document.getElementById('termFinal');
 
   if (term && cursor) {
     var cmds = Array.prototype.slice.call(term.querySelectorAll('[data-type]'));
-    var outs = Array.prototype.slice.call(term.querySelectorAll('.term__out, .term__btns'));
+    var outs = Array.prototype.slice.call(term.querySelectorAll('.term__out'));
     var cancelled = false;
     var done = false;
 
-    // Stash each command's text, then clear it so it can be typed back.
     cmds.forEach(function (el) {
       el.dataset.text = el.textContent;
       el.textContent = '';
@@ -55,11 +106,6 @@
       return new Promise(function (resolve) { setTimeout(resolve, ms); });
     };
 
-    var restCursor = function () {
-      if (finalLine) finalLine.appendChild(cursor);
-    };
-
-    // Snap straight to the finished state (skip / on completion).
     var finish = function () {
       if (done) return;
       done = true;
@@ -69,39 +115,38 @@
         el.style.opacity = '1';
       });
       outs.forEach(function (el) { el.classList.add('show'); });
-      restCursor();
+      if (finalLine) finalLine.insertBefore(cursor, null);
     };
 
     var run = function () {
       return (async function () {
         for (var i = 0; i < cmds.length; i++) {
           var cmd = cmds[i];
-          // Park the cursor right after the command being typed.
           cmd.insertAdjacentElement('afterend', cursor);
           cmd.style.opacity = '1';
           var text = cmd.dataset.text;
           for (var c = 0; c < text.length; c++) {
             if (cancelled) return;
             cmd.textContent += text.charAt(c);
-            await sleep(40);
+            await sleep(38);
           }
           if (cancelled) return;
-          await sleep(240); // command "runs"
-          var output = cmd.parentElement.nextElementSibling;
-          if (output && (output.classList.contains('term__out') ||
-                         output.classList.contains('term__btns'))) {
-            output.classList.add('show');
+          await sleep(220); // command "runs"
+          // Reveal every consecutive output block after this command line
+          var out = cmd.parentElement.nextElementSibling;
+          while (out && out.classList.contains('term__out')) {
+            out.classList.add('show');
+            await sleep(180);
+            if (cancelled) return;
+            out = out.nextElementSibling;
           }
-          await sleep(200);
         }
         finish();
       })();
     };
 
-    // Skip on first interaction or scroll.
-    var skip = function () { finish(); };
-    term.addEventListener('click', skip);
-    window.addEventListener('scroll', skip, { once: true, passive: true });
+    term.addEventListener('click', function () { finish(); });
+    window.addEventListener('scroll', function () { finish(); }, { once: true, passive: true });
 
     run();
   }
@@ -120,7 +165,6 @@
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       revealEls.forEach(function (el) { io.observe(el); });
     } else {
-      // No observer support: just show everything.
       revealEls.forEach(function (el) { el.classList.add('in'); });
     }
   }
