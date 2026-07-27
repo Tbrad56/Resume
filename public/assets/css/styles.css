@@ -470,6 +470,13 @@ code {
 .section--contact .section__title { margin-bottom: 14px; }
 .contact__line { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
 
+/* ===== 404 =====
+   These lived as inline style attributes on 404.html until the CSP dropped
+   'unsafe-inline' from style-src. Keep 404 markup class-only. */
+.section--404 { text-align: center; padding-top: 120px; }
+.section--404 .section__heading { font-size: 28px; margin-bottom: 12px; }
+.section--404 .section__note { color: var(--muted); margin-bottom: 28px; }
+
 /* ===== Footer ===== */
 .footer {
   text-align: center;
