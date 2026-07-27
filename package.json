@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test test/",
+    "test": "node --test",
     "audit": "npm audit --audit-level=high"
   },
   "engines": {
