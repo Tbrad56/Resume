@@ -65,7 +65,7 @@ trivially bypassed.
 
 ```bash
 npm ci
-npm test                  # expect 19 passing
+npm test                  # expect 22 passing
 npm audit                 # expect 0 vulnerabilities
 npm start                 # smoke test at http://localhost:3000
 ```

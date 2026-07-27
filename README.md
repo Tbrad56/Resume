@@ -28,7 +28,7 @@ Node 20 or higher.
 | Command | Does |
 |---|---|
 | `npm start` | Runs the server on `PORT`, default 3000. |
-| `npm test` | Full suite, 19 tests, `node:test` with no runner dependency. |
+| `npm test` | Full suite, 22 tests, `node:test` with no runner dependency. |
 | `npm run audit` | Dependency audit, fails on high or critical. |
 
 ## Structure

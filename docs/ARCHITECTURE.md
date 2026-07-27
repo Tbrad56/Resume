@@ -21,7 +21,7 @@ request
   │
   ├─ express.static .............. public/
   ├─ 404 ......................... public/404.html
-  └─ error handler ............... fixed string, no stack traces
+  └─ error handler ............... honors err.status, no stack traces
 ```
 
 Order matters. The rate limiters sit ahead of the body parser so a flood of oversized
