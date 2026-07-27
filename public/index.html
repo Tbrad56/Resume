@@ -86,13 +86,28 @@
           <span class="chip">Java</span><span class="chip">Python</span><span class="chip">C</span>
           <span class="chip">C++</span><span class="chip">SQL</span><span class="chip">HTML</span><span class="chip">CSS</span>
         </div>
+        <p class="chips__label">Security Tooling &amp; Platforms</p>
+        <div class="chips">
+          <span class="chip">Rapid7 InsightVM</span><span class="chip">Rapid7 InsightConnect (SOAR)</span>
+          <span class="chip">CISA KEV</span><span class="chip">Threat Intelligence</span>
+          <span class="chip">Vulnerability Management</span><span class="chip">Jira</span>
+          <span class="chip">REST APIs</span><span class="chip">JSON</span><span class="chip">Regex</span>
+        </div>
+        <p class="chips__label">Infrastructure &amp; Systems</p>
+        <div class="chips">
+          <span class="chip">Debian</span><span class="chip">Docker</span>
+          <span class="chip">WireGuard</span><span class="chip">Tailscale</span>
+          <span class="chip">ufw</span><span class="chip">restic</span>
+          <span class="chip">Backblaze B2</span><span class="chip">Network Segmentation</span>
+          <span class="chip">Backup &amp; Recovery</span>
+        </div>
         <p class="chips__label">Other Skills</p>
         <div class="chips">
           <span class="chip">Security Controls</span><span class="chip">Intrusion Detection &amp; Prevention</span>
           <span class="chip">Threat Detection</span><span class="chip">Threat Management</span>
           <span class="chip">Incident Response</span><span class="chip">OOP</span>
           <span class="chip">NIST Cybersecurity Framework</span><span class="chip">Blockchain Development</span>
-          <span class="chip">PLC Programming</span><span class="chip">Linux OS</span>
+          <span class="chip">PLC Programming</span>
           <span class="chip">Onshape</span><span class="chip">Microsoft Office Suite</span>
         </div>
       </div>
@@ -115,6 +130,22 @@
           <ul class="bullets">
             <li>Developed a blockchain-secured ICS/SCADA monitoring system, targeting real-world industrial cybersecurity challenges in Water Treatment Plant environments.</li>
             <li>Designed and integrated a custom blockchain ledger in C using <span class="redact" tabindex="0">OpenSSL SHA-256 hashing</span> and Proof-of-Work consensus for immutable, tamper-proof logging of ICS sensor data and security events.</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__head">
+            <div>
+              <h3 class="card__title">Self-Hosted Storage Server</h3>
+              <p class="card__sub">Debian <span class="dot">·</span> Docker <span class="dot">·</span> WireGuard <span class="dot">·</span> restic <span class="dot">·</span> Backblaze B2</p>
+            </div>
+            <span class="card__date">Jul 2026</span>
+          </div>
+          <ul class="bullets">
+            <li>Kept the server off the public internet entirely, with no port forwarding and no open inbound ports. All access runs through a <span class="redact" tabindex="0">WireGuard VPN</span>, so a device must be enrolled before it can reach the host, and untrusted devices are limited to the two application ports they need.</li>
+            <li>Separated six services onto isolated Docker networks so that a compromise in one cannot reach the others, then verified the boundary by connecting into a running container and attempting to reach its neighbors. Both name resolution and direct connections failed, as intended.</li>
+            <li>Identified that Docker inserts its own firewall rules ahead of ufw, which had been publishing container ports to the entire local network. Corrected it by binding those ports to the VPN address rather than to all interfaces.</li>
+            <li>Configured nightly encrypted backups to cloud storage, with encryption performed before any data leaves the network. Confirmed recoverability by restoring a snapshot and diffing it against the source, since a backup job exiting successfully does not prove the data can be recovered.</li>
           </ul>
         </article>
 
@@ -166,8 +197,10 @@
           <span class="card__date">May 2026 — ACTIVE</span>
         </div>
         <ul class="bullets">
-          <li>Conducting research under the supervision of Vimal Buck in cybersecurity, spanning embedded systems security and log integrity in IoT environments.</li>
-          <li>Developing hands-on skills in security research methodologies alongside coursework in computer science.</li>
+          <li>Designed and built KEVA (Known Exploited Vulnerability Alerter), an automated security workflow in <span class="redact" tabindex="0">Rapid7 InsightConnect</span> that pulls CISA's Known Exploited Vulnerabilities catalog daily, correlates new CVEs against the company's Rapid7 InsightVM environment, and auto-generates Jira tickets identifying affected assets.</li>
+          <li>Integrated four systems &mdash; CISA, Rapid7 InsightVM, Jira, and Microsoft Teams &mdash; into a single automated pipeline, replacing manual daily vulnerability monitoring.</li>
+          <li>Wrote Python components using REST APIs, JSON parsing, and regex to filter 1,600+ catalog entries down to newly published threats and resolve affected asset IDs to hostnames.</li>
+          <li>Engineered defensive logic to handle real-world edge cases, including CVEs absent from the internal scanner and vulnerabilities with no affected assets, preventing false-positive tickets.</li>
         </ul>
       </article>
 
