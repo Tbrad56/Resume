@@ -69,3 +69,43 @@ test('dotfiles under public/ are not served', async () => {
   const res = await fetch(`${base}/.env`, { headers: UA });
   assert.equal(res.status, 404);
 });
+
+test('oversized body is rejected as 413, not 500', async () => {
+  const res = await fetch(`${base}/api/contact`, {
+    method: 'POST',
+    headers: { ...UA, 'content-type': 'application/json' },
+    body: JSON.stringify({ name: 'x', message: 'A'.repeat(20000) }),
+  });
+  assert.equal(res.status, 413, 'body cap should surface as a client error');
+  const json = await res.json();
+  assert.match(json.error, /PAYLOAD TOO LARGE/);
+});
+
+test('malformed JSON is rejected as 4xx, not 500', async () => {
+  const res = await fetch(`${base}/api/contact`, {
+    method: 'POST',
+    headers: { ...UA, 'content-type': 'application/json' },
+    body: '{"name":',
+  });
+  assert.ok(res.status >= 400 && res.status < 500, `expected 4xx, got ${res.status}`);
+});
+
+test('rate limiter still enforces its configured max', async () => {
+  // Guards against a dependency major silently changing the option name:
+  // a limiter that stops limiting would otherwise pass every other test.
+  const rateLimit = require('express-rate-limit');
+  const express = require('express');
+  const probe = express();
+  probe.use(rateLimit({ windowMs: 60000, max: 2, standardHeaders: true, legacyHeaders: false }));
+  probe.get('/', (_req, res) => res.send('ok'));
+
+  const s = probe.listen(0);
+  try {
+    const url = `http://127.0.0.1:${s.address().port}/`;
+    const codes = [];
+    for (let i = 0; i < 4; i++) codes.push((await fetch(url)).status);
+    assert.deepEqual(codes, [200, 200, 429, 429], `limiter not honoring max: ${codes}`);
+  } finally {
+    s.close();
+  }
+});
