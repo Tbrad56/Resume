@@ -1,4 +1,5 @@
 const express = require('express');
+const config = require('../config');
 
 const MAX = { name: 100, email: 200, message: 5000 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,8 +36,8 @@ module.exports = function createContactRouter(sendMail) {
 
     try {
       await sendMail({
-        to: process.env.CONTACT_INBOX || process.env.SMTP_USER,
-        from: process.env.SMTP_USER,
+        to: config.mail.inbox,
+        from: config.mail.user,
         replyTo: clean.email,
         subject: `[SECURE CHANNEL] ${clean.name}`,
         text: `From: ${clean.name} <${clean.email}>\n\n${clean.message}`,

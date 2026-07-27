@@ -5,7 +5,7 @@ process.env.NODE_ENV = 'test';
 process.env.RATE_GLOBAL_MAX = '100';
 process.env.RATE_CONTACT_MAX = '3';
 
-const app = require('../server');
+const app = require('../src/app');
 
 let server;
 let base;

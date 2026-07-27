@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert');
 const express = require('express');
-const createContactRouter = require('../routes/contact');
+const createContactRouter = require('../src/routes/contact');
 
 function makeApp(spy) {
   const app = express();
