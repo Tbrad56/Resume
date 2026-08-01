@@ -76,9 +76,26 @@
       </div>
     </section>
 
+    <!-- ===== Certifications ===== -->
+    <section class="section reveal" id="certifications">
+      <p class="section__label">// FILE 02 — CREDENTIALS</p>
+      <h2 class="section__title">Certifications</h2>
+      <div class="card">
+        <div class="card__head">
+          <div>
+            <h3 class="card__title">CompTIA Security+ (SY0-701)</h3>
+            <p class="card__sub">CompTIA <span class="dot">·</span> In Progress</p>
+          </div>
+          <span class="card__date">Aug 2026 <em>(Scheduled)</em></span>
+        </div>
+        <p class="kv"><span class="kv__key">Domains</span> General Security Concepts, Threats &amp; Vulnerabilities, Security Architecture,
+          Security Operations, Security Program Management &amp; Oversight</p>
+      </div>
+    </section>
+
     <!-- ===== Technical Skills ===== -->
     <section class="section reveal" id="skills">
-      <p class="section__label">// FILE 02 — CAPABILITIES</p>
+      <p class="section__label">// FILE 03 — CAPABILITIES</p>
       <h2 class="section__title">Technical Skills</h2>
       <div class="card">
         <p class="chips__label">Programming Languages</p>
@@ -115,7 +132,7 @@
 
     <!-- ===== Projects ===== -->
     <section class="section reveal" id="projects">
-      <p class="section__label">// FILE 03 — OPERATIONS</p>
+      <p class="section__label">// FILE 04 — OPERATIONS</p>
       <h2 class="section__title">Projects</h2>
       <div class="grid">
 
@@ -143,9 +160,8 @@
           </div>
           <ul class="bullets">
             <li>Kept the server off the public internet entirely, with no port forwarding and no open inbound ports. All access runs through a <span class="redact" tabindex="0">WireGuard VPN</span>, so a device must be enrolled before it can reach the host, and untrusted devices are limited to the two application ports they need.</li>
-            <li>Separated six services onto isolated Docker networks so that a compromise in one cannot reach the others, then verified the boundary by connecting into a running container and attempting to reach its neighbors. Both name resolution and direct connections failed, as intended.</li>
-            <li>Identified that Docker inserts its own firewall rules ahead of ufw, which had been publishing container ports to the entire local network. Corrected it by binding those ports to the VPN address rather than to all interfaces.</li>
-            <li>Configured nightly encrypted backups to cloud storage, with encryption performed before any data leaves the network. Confirmed recoverability by restoring a snapshot and diffing it against the source, since a backup job exiting successfully does not prove the data can be recovered.</li>
+            <li>Separated six services onto isolated Docker networks so that a compromise in one cannot reach the others, then verified the boundary by connecting into a running container and attempting to reach its neighbors.</li>
+            <li>Configured nightly encrypted backups to cloud storage, with encryption performed before any data leaves the network.</li>
           </ul>
         </article>
 
@@ -185,7 +201,7 @@
     <!-- ===== Experience ===== -->
       
     <section class="section reveal" id="experience">
-      <p class="section__label">// FILE 04 — FIELD ASSIGNMENTS</p>
+      <p class="section__label">// FILE 05 — FIELD ASSIGNMENTS</p>
       <h2 class="section__title">Experience</h2>
 
       <article class="card reveal">
@@ -236,7 +252,7 @@
 
     <!-- ===== Leadership ===== -->
     <section class="section reveal" id="leadership">
-      <p class="section__label">// FILE 05 — LEADERSHIP</p>
+      <p class="section__label">// FILE 06 — LEADERSHIP</p>
       <h2 class="section__title">Leadership</h2>
 
       <article class="card reveal">
@@ -270,7 +286,7 @@
 
     <!-- ===== Contact ===== -->
     <section class="section section--contact reveal" id="contact">
-      <p class="section__label">// FILE 06 — SECURE CHANNEL</p>
+      <p class="section__label">// FILE 07 — SECURE CHANNEL</p>
       <h2 class="section__title">Get in touch</h2>
       <p class="contact__line">Open to internships and research in cybersecurity &amp; software. Transmissions encrypted in transit.</p>
       <form class="contact-form" id="contactForm" novalidate>
